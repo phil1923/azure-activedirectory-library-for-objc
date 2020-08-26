@@ -16,6 +16,8 @@
 // See the Apache License, Version 2.0 for the specific language
 // governing permissions and limitations under the License.
 
+//Removing UIWebView test
+
 @interface ADAuthenticationWebViewController : NSObject <UIWebViewDelegate, NSURLConnectionDelegate>
 
 @property (weak, nonatomic) id<ADAuthenticationDelegate> delegate;

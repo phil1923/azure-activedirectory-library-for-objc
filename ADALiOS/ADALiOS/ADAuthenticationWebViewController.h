@@ -16,13 +16,11 @@
 // See the Apache License, Version 2.0 for the specific language
 // governing permissions and limitations under the License.
 
-//Removing UIWebView test
-
-@interface ADAuthenticationWebViewController : NSObject <UIWebViewDelegate, NSURLConnectionDelegate>
+@interface ADAuthenticationWebViewController : NSObject <NSURLConnectionDelegate>
 
 @property (weak, nonatomic) id<ADAuthenticationDelegate> delegate;
 
-- (id)initWithWebView:(UIWebView *)webView startAtURL:(NSURL *)startURL endAtURL:(NSURL *)endURL;
+- (id)initWithWebView:(id)webView startAtURL:(NSURL *)startURL endAtURL:(NSURL *)endURL;
 - (void)start;
 - (void)stop;
 - (void) handlePKeyAuthChallenge:(NSString *)challengeUrl;

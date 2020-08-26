@@ -181,7 +181,7 @@ static NSString *_resourcePath = nil;
 - (void)start:(NSURL *)startURL
           end:(NSURL *)endURL
 parentController:(UIViewController *)parent
-      webView:(WebViewType *)webView
+      webView:(id)webView
    fullScreen:(BOOL)fullScreen
 correlationId:(NSUUID *)correlationId
    completion:(ADBrokerCallback)completionBlock

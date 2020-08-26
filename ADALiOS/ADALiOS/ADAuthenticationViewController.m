@@ -21,7 +21,7 @@
 #import "ADAuthenticationViewController.h"
 #import "ADLogger.h"
 
-@interface ADAuthenticationViewController ( ) <ADAuthenticationDelegate, UIWebViewDelegate>
+@interface ADAuthenticationViewController ( ) <ADAuthenticationDelegate>
 @end
 
 @implementation ADAuthenticationViewController
@@ -80,20 +80,20 @@
         [_activityIndicator startAnimating];
 }
 
-// Launches the UIWebView with a start URL. The UIWebView is halted when a
+// Launches the XXWebView with a start URL. The XXWebView is halted when a
 // prefix of the end URL is reached.
 - (BOOL)startWithURL:(NSURL *)startURL endAtURL:(NSURL *)endURL
 {
-    _webAuthenticationWebViewController = [[ADAuthenticationWebViewController alloc] initWithWebView:_webView startAtURL:startURL endAtURL:endURL];
+    /*_webAuthenticationWebViewController = [[ADAuthenticationWebViewController alloc] initWithWebView:_webView startAtURL:startURL endAtURL:endURL];
     
     if ( _webAuthenticationWebViewController )
     {
         // Delegate set up: this object is the delegate for the ADAuthenticationWebViewController,
-        // and the controller will have established itself as the delegate for the UIWebView. However,
-        // this object also wants events from the UIWebView to control the activity indicator so we
+        // and the controller will have established itself as the delegate for the XXWebView. However,
+        // this object also wants events from the XXWebView to control the activity indicator so we
         // hijack the delegate here and forward events as they are seen in this object.
         _webAuthenticationWebViewController.delegate = self;
-        _webView.delegate                            = self;
+        //_webView.delegate                            = self;
         
         [_webAuthenticationWebViewController start];
         return YES;
@@ -102,6 +102,9 @@
     {
         return NO;
     }
+     */
+    
+    return NO;
 }
 
 #pragma mark - ADAuthenticationDelegate
@@ -126,19 +129,19 @@
     NSAssert( nil != _delegate, @"Delegate object was lost" );
     [_delegate webAuthenticationDidFailWithError:error];
 }
+/*
+#pragma mark - XXWebViewDelegate Protocol
 
-#pragma mark - UIWebViewDelegate Protocol
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (BOOL)webView:(XXWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(XXWebViewNavigationType)navigationType
 {
 #pragma unused(webView)
 #pragma unused(navigationType)
     
-    // Forward to the UIWebView controller
+    // Forward to the XXWebView controller
     return [_webAuthenticationWebViewController webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+- (void)webViewDidStartLoad:(XXWebView *)webView
 {
 #pragma unused(webView)
 
@@ -150,11 +153,11 @@
                                    userInfo:nil
                                     repeats:NO];
     
-    // Forward to the UIWebView controller
+    // Forward to the XXWebView controller
     [_webAuthenticationWebViewController webViewDidStartLoad:webView];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(XXWebView *)webView
 {
 #pragma unused(webView)
 
@@ -162,11 +165,11 @@
     _loading = NO;
     [_activityIndicator stopAnimating];
     
-    // Forward to the UIWebView controller
+    // Forward to the XXWebView controller
     [_webAuthenticationWebViewController webViewDidFinishLoad:webView];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(XXWebView *)webView didFailLoadWithError:(NSError *)error
 {
 #pragma unused(webView)
     
@@ -174,8 +177,9 @@
     _loading = NO;
     [_activityIndicator stopAnimating];
 
-    // Forward to the UIWebView controller
+    // Forward to the XXWebView controller
     [_webAuthenticationWebViewController webView:webView didFailLoadWithError:error];
 }
+*/
 
 @end

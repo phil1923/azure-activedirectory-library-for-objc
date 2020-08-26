@@ -34,7 +34,7 @@ typedef void (^ADBrokerCallback) (ADAuthenticationError* error, NSURL*);
 - (void)start:(NSURL *)startURL
           end:(NSURL *)endURL
 parentController:(UIViewController *)parent
-      webView:(WebViewType*)webView
+      webView:(id)webView
    fullScreen:(BOOL)fullScreen
 correlationId:(NSUUID*)correlationId
    completion: (ADBrokerCallback) completionBlock;

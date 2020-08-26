@@ -32,7 +32,7 @@
 
 @implementation ADAuthenticationWebViewController
 {
-    __weak UIWebView *_webView;
+    __weak id _webView;
     
     NSURL    *_startURL;
     NSString *_endURL;
@@ -43,7 +43,7 @@
 #pragma mark - Initialization
 NSTimer *timer;
 
-- (id)initWithWebView:(UIWebView *)webView startAtURL:(NSURL *)startURL endAtURL:(NSURL *)endURL
+- (id)initWithWebView:(id)webView startAtURL:(NSURL *)startURL endAtURL:(NSURL *)endURL
 {
     if ( nil == startURL || nil == endURL )
         return nil;
@@ -58,7 +58,7 @@ NSTimer *timer;
         _complete  = NO;
         _timeout = [[ADAuthenticationSettings sharedInstance] requestTimeOut];
         _webView          = webView;
-        _webView.delegate = self;
+
         [ADNTLMHandler setCancellationUrl:[_startURL absoluteString]];
     }
     
@@ -68,10 +68,9 @@ NSTimer *timer;
 - (void)dealloc
 {
     // The ADAuthenticationWebViewController can be released before the
-    // UIWebView that it is managing is released in the hosted case and
+    // XXWebView that it is managing is released in the hosted case and
     // so it is important that to stop listening for events from the
-    // UIWebView when we are released.
-    _webView.delegate = nil;
+    // XXWebView when we are released.
     _webView          = nil;
 }
 
@@ -108,11 +107,11 @@ NSTimer *timer;
     [responseUrl setValue:authHeader forHTTPHeaderField:@"Authorization"];
     [_webView loadRequest:responseUrl];
 }
+/*
 
+#pragma mark - XXWebViewDelegate Protocol
 
-#pragma mark - UIWebViewDelegate Protocol
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (BOOL)webView:(XXWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(XXWebViewNavigationType)navigationType
 {
 #pragma unused(webView)
 #pragma unused(navigationType)
@@ -178,7 +177,7 @@ NSTimer *timer;
     return YES;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+- (void)webViewDidStartLoad:(XXWebView *)webView
 {
     if (timer != nil){
         [timer invalidate];
@@ -187,14 +186,14 @@ NSTimer *timer;
     timer = [NSTimer scheduledTimerWithTimeInterval:_timeout target:self selector:@selector(failWithTimeout) userInfo:nil repeats:NO];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)webViewDidFinishLoad:(XXWebView *)webView
 {
 #pragma unused(webView)
     [timer invalidate];
     timer = nil;
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(XXWebView *)webView didFailLoadWithError:(NSError *)error
 {
 #pragma unused(webView)
     if(timer && [timer isValid]){
@@ -266,5 +265,7 @@ NSTimer *timer;
                                                                     code:NSURLErrorTimedOut
                                                                 userInfo:nil]];
 }
+
+*/
 
 @end

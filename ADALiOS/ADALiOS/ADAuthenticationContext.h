@@ -27,7 +27,7 @@
 #if TARGET_OS_IPHONE
 //iOS:
 #   include <UIKit/UIKit.h>
-typedef UIWebView WebViewType;
+
 #else
 //OS X:
 #   include <WebKit/WebKit.h>
@@ -163,7 +163,7 @@ typedef void(^ADAuthenticationCallback)(ADAuthenticationResult* result);
 
 /*! Gets or sets the webview, which will be used for the credentials. If nil, the library will create a webview object
  when needed, leveraging the parentController property. */
-@property (weak) WebViewType* webView;
+@property (weak) id webView;
 
 /*! Follows the OAuth2 protocol (RFC 6749). The function will first look at the cache and automatically check for token
  expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available,

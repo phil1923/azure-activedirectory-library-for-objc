@@ -21,7 +21,7 @@
 @interface ADAuthenticationViewController : UIViewController
 
 @property (weak, nonatomic)   id<ADAuthenticationDelegate>     delegate;
-@property (weak, nonatomic)   IBOutlet UIWebView               *webView;
+
 @property (weak, nonatomic)   IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)onCancel:(id)sender;
